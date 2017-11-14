@@ -1,0 +1,64 @@
+<!-- KIT DE SURVIE JS - IUT INFORMATIQUE BORDEAUX -->
+<!DOCTYPE html>
+<head>
+ 
+    <meta charset="utf-8" />
+ 
+    <title>Exercice 14</title>
+    <meta name="description" content="Description de la page">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <style>
+    	body{ font-family: 'Quicksand', sans-serif; }
+	</style>
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		$('form').submit(function() {
+                var nom = $('.nom').val();
+                var prenom = $('.prenom').val();
+                var age = $('.age').val();
+                var sexe = $('.sexe').val();
+                var description = $('.description').val();
+
+                var personne = {
+                    nom : nom,
+                    prenom : prenom,
+                    age : age,
+                    sexe : sexe,
+                    description : description
+
+                };
+                console.log(personne);
+            })
+    	});
+   	</script>
+</head>
+<body>
+	<form action="#">
+        <label for="nom">Votre nom</label>
+        <input type="text" name="nom" class="nom">
+
+
+        <label for="prenom">Votre prénom</label>
+        <input type="text" name="prenom" class="prenom">
+
+        <label for="age">Votre age</label>
+        <input type="text" name="age" class="age" >
+
+        <label for="sexe">Votre sexe</label>
+            <select name="sexe" class="sexe">
+                <option value="M">M</option>
+                <option value="F">F</option>
+                <option value="Robot">Robot</option>
+            </select>
+
+        <label for="description">Votre description </label>
+        <input type="textarea" class="description">
+
+        <input type="submit" value="Envoyer">
+    </form>
+</body>
+ 
+</html>
