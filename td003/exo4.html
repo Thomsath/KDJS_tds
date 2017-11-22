@@ -1,0 +1,26 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title></title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	</head>
+	<body>
+
+		<form ng-app="app" ng-controller="operations">
+
+			<input type="text" name="nombre1" class="nombre2" value="1" ng-model="nombre1">
+			<input type="text" name="nombre2" class="nombre2" ng-model="nombre2">
+			<select name="operateur" class="operateur" ng-model="operateur">
+				<option value="+">+</option>
+				<option value="-">-</option>
+				<option value="*">*</option>
+				<option value="/">/</option>
+			</select>
+			<p ng-bind="resu"></p>	
+			<input type="submit" ng-click="submit()" value="Computeeeeeeer">
+
+		</form>
+	
+	</body>
+<script src="app.js"></script>
+	</html>

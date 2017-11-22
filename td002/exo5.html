@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<head>
+ 
+    <meta charset="utf-8" />
+ 
+    <title>Kit de Survie JS</title>
+    <meta name="description" content="">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+ 
+    <style>
+    	body{ font-family: 'Quicksand', sans-serif; background-color: #F9F9F9;}
+        #value_data, select { border : 1px solid #c3c3c3; border-radius: 5px; margin: 5px; width: 200px; height: 30px;}
+        .btn-primary {margin : 5px; width: 200px; background-color: orange; border: 1px solid orange;}
+        tr {border: 1px solid #c3c3c3; font-weight: bold;}
+        td { padding: 5px; }
+	</style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    	$(document).ready(function(){
+
+    		$('#form').submit(function() {
+
+                var select = $('#infos').val();
+
+              switch(select) {
+                case "CPD" :
+                var CPD = $('#value_data').val();
+                $.ajax({
+                        url : "https://geo.api.gouv.fr/communes?codeDepartement=" + CPD,
+                        dataType : "json",
+
+                        complete: function(data) {
+                            if(data.responseJSON.length == 0) {
+                                $('.error').text('Aucun résultat trouvé.'); 
+                            }
+                            $('.added').remove();
+                            $('.add').remove();
+                            data.responseJSON.forEach(function(e) {
+
+                                $('.table-hover').append('<tr class="added">');
+                                $('.table-hover').append('<td class="add">' + e.nom + '</td>');
+                                $('.table-hover').append('<td class="add">' + e.code + '</td>');
+                                $('.table-hover').append('<td class="add">' + e.codeDepartement + '</td>');
+                                $('.table-hover').append('<td class="add">' + e.codeRegion + '</td>');
+                                $('.table-hover').append('<td class="add">' + e.population + '</td></tr>');
+                            });
+                        },
+
+                        error : function() {
+                            alert('Un problème est survenu');
+                        },
+
+                        method : "GET"
+                    });
+                return false;
+                    break;
+
+                case "Nom" :
+                        var Nom = $('#value_data').val();
+                $.ajax({
+                        url : "https://geo.api.gouv.fr/communes?nom=" + Nom,
+                        dataType : "json",
+
+                        complete: function(data) {
+                             if(data.responseJSON.length == 0) {
+                                $('.error').text('Aucun résultat trouvé.'); 
+                            }
+                            $('.added').remove();
+                            $('.add').remove();
+                            data.responseJSON.forEach(function(e) {
+                                $('.table-hover').append('<tr class="added">');
+                                $('.table-hover').append('<td class="add">' + e.nom + '</td>');
+                                $('.table-hover').append('<td class="add">' + e.code + '</td>');
+                                $('.table-hover').append('<td class="add">' + e.codeDepartement + '</td>');
+                                $('.table-hover').append('<td class="add">' + e.codeRegion + '</td>');
+                                $('.table-hover').append('<td class="add">' + e.population + '</td></tr>');
+                            });
+                        },
+
+                        error : function() {
+                            alert('Un problème a survenu');
+                        },
+
+                        method : "GET"
+                    });
+                return false;
+                    break;
+
+                case "CP" :
+                var CP = $('#value_data').val();
+                $.ajax({
+                        url : "https://geo.api.gouv.fr/communes?codePostal=" + CP,
+                        dataType : "json",
+
+                        complete: function(data) {
+                             if(data.responseJSON.length == 0) {
+                                $('.error').text('Aucun résultat trouvé.'); 
+                            }
+                            $('.added').remove();
+                            $('.add').remove();
+                            data.responseJSON.forEach(function(e) {
+                                $('.table-hover').append('<tr class="added">');
+                                $('.table-hover').append('<td class="add">' + e.nom + '</td>');
+                                $('.table-hover').append('<td class="add">' + e.code + '</td>');
+                                $('.table-hover').append('<td class="add">' + e.codeDepartement + '</td>');
+                                $('.table-hover').append('<td class="add">' + e.codeRegion + '</td>');
+                                $('.table-hover').append('<td class="add">' + e.population + '</td></tr>');
+                            });
+                        },
+
+                        error : function() {
+                            alert('Un problème a survenu');
+                        },
+
+                        method : "GET"
+                    });
+                return false;
+                    break;
+              }
+
+
+            });
+    	});
+   	</script>
+</head>
+<body>
+	<form id="form" method="GET">
+        <center><h2> Informations à propos de votre ville </h2>
+        <hr>
+        <select id="infos" name="selectbtn">
+            <option value="Nom" name="CPD">Nom</option>
+            <option value="CP" name="CPD">Code Postal</option>
+            <option value="CPD" name="CPD">Code départemental</option>
+        </select><br />
+
+        <input type="text" id="value_data"><br />
+        <input type="submit" value="Envoyer" class="btn btn-primary">
+    </form></center>
+    <p class="error" style="color: red;"></p>
+    <table class="table table-hover">
+        <thead>
+            <td id="nom">Nom</td>
+            <td>Code Postal</td>
+            <td>Code Département </td>
+            <td>Code Région </td>
+            <td>Population</td>
+        </thead>
+
+    </table>
+</body>
+ 
+</html>

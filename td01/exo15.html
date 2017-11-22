@@ -3,90 +3,137 @@
  
     <meta charset="utf-8" />
  
-    <title>Titre de la page</title>
+    <title>Générateur de contenu web</title>
     <meta name="description" content="Description de la page">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
     <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
+    		var recipient = $('#recipient');
+    		var error = $('.error');
+
+    		// <++++++++++++++++++++++++++++ AU CLIC DU BOUTON GENERER ++++++++++++++++++++++++++++>
+
+    		// Génère le code html du contenu créé
+    		$('#generate').click(function() {
+    			alert($('#recipient').html());
+    		});
+
+
+    		// <++++++++++++++++++++++++++++ AU CLIC DU BOUTON REENITIALISER ++++++++++++++++++++++++++++>
+
+    		// Clear le contenu
+    		$('#reenit').click(function() {
+    			recipient.html('');
+    			error.text('Tous les éléments ont été supprimés !');
+    		});
+
+
+
+    		// <++++++++++++++++++++++++++++ AU CLIC DU BOUTON AJOUTER ++++++++++++++++++++++++++++>
+
+    		// Ajoute le contenu au recipient
 
     		$('#submit').click(function() {
     		  	var typeElt = $('#type').val();
     			var content = $('#contenu').val();
+    			var bool;
+
+    			// On vérifie si le bouton radio est coché ou non 
     			if($('#ajoutAvant').is(':checked')) {
-    				var bool = 1
+    				bool = 1
     			} else { bool = 0; };
+
+    			// On vérifie si du contenu est rentré
+    			if(content == "") {
+    				error.text('Merci d\'entrer une valeur');
+    			}
+    			else {
+    				error.text('');
+    			// Si le bouton radio est coché
     			if(bool == 1 ) {
 
     				switch(typeElt) {
     					case "h1" : 
-    						$('#recipient').prepend("<"+ typeElt + ">" + content + " <" + typeElt + "/><br>");
+    						//$('#recipient').prepend("<"+ typeElt + ">" + content + " <" + typeElt + "/><br>");
+    						$('#recipient').prepend("<"+ typeElt + ">" + content);
     						break;
 						
 						case "h2" : 
-    						$('#recipient').prepend("<"+ typeElt + ">" + content + " <" + typeElt + "/><br>");
+    						$('#recipient').prepend("<"+ typeElt + ">" + content);
     						break;
 
 						case "h3" : 
-    						$('#recipient').prepend("<"+ typeElt + ">" + content + " <" + typeElt + "/><br>");
+    						$('#recipient').prepend("<"+ typeElt + ">" + content);
     						break;
 
     					case "p" : 
-    						$('#recipient').prepend("<"+ typeElt + ">" + content + " <" + typeElt + "/><br>");
+    						$('#recipient').prepend("<"+ typeElt + ">" + content);
     						break;
 
     					case "a":
-    						$('#recipient').prepend("<"+ typeElt + " href='http://google.com'>" + content + " <" + typeElt + "/><br>");
-
+    						$('#recipient').prepend("<"+ typeElt + " href='http://google.com'>" + content + " ");
+    						break;
     					case "input:text":
     						$('#recipient').prepend("<input type='text' value = '" + content + "'><br>");
-
+    						break;
     					case "input:submit":
-    						$('#recipient').prepend($("<input type='submit' value = '" + content + "'><br>").fadeIn('slow'));
-
+    						$('#recipient').prepend("<input type='submit' value = '" + content + "'><br>");
+    						break;
     					case "label":
-    						$('#recipient').prepend("<"+ typeElt + ">" + content + " <" + typeElt + "/><br>").fadeIn('slow');	
+    						$('#recipient').prepend("<"+ typeElt + ">" + content);	
+    						break;
+    					case "img":
+    						$('#recipient').prepend("<" + typeElt + " src='" + content + "' </" + typeElt + ">");
+    						break;
     				}
     				
     			}
 
+    			// Si le bouton radion n'est pas coché
     			if(bool == 0 ) {
     				
     				switch(typeElt) {
     					case "h1" : 
-    						$('#recipient').append("<"+ typeElt + ">" + content + " <" + typeElt + "/><br>");
+    						$('#recipient').prepend("<"+ typeElt + ">" + content);
     						break;
 						
 						case "h2" : 
-    						$('#recipient').append("<"+ typeElt + ">" + content + " <" + typeElt + "/><br>");
+    						$('#recipient').prepend("<"+ typeElt + ">" + content);
     						break;
 
 						case "h3" : 
-    						$('#recipient').append("<"+ typeElt + ">" + content + " <" + typeElt + "/><br>");
+    						$('#recipient').prepend("<"+ typeElt + ">" + content);
     						break;
 
     					case "p" : 
-    						$('#recipient').append("<"+ typeElt + ">" + content + " <" + typeElt + "/><br>");
+    						$('#recipient').prepend("<"+ typeElt + ">" + content);
     						break;
 
     					case "a":
-    						$('#recipient').append("<"+ typeElt + " href='http://google.com'>" + content + " <" + typeElt + "/><br>");
-
+    						$('#recipient').prepend("<"+ typeElt + " href='http://google.com'>" + content+ " ");
+    						break;
     					case "input:text":
-    						$('#recipient').append("<input type='text' value = '" + content + "'><br>");
-
+    						$('#recipient').prepend("<input type='text' value = '" + content + "'><br>");
+    						break;
     					case "input:submit":
-    						$('#recipient').append("<input type='submit' value = '" + content + "'><br>");
-
+    						$('#recipient').prepend("<input type='submit' value = '" + content + "'><br>");
+    						break;
     					case "label":
-    						$('#recipient').append("<"+ typeElt + ">" + content + " <" + typeElt + "/>");	
+    						$('#recipient').prepend("<"+ typeElt + ">" + content);	
+    						break;
+    					case "img":
+    						$('#recipient').prepend("<" + typeElt + " src='" + content + "' </" + typeElt + ">");
+    						break;
+
     				}
     				
     			}
-    			else {
-    			$('#recipient').append("<"+ typeElt + ">" + content + " <" + typeElt + "/>");
-    			}
+    		}
+    			//else {
+    			//$('#recipient').append("<"+ typeElt + ">" + content + " <" + typeElt + "/>");
+    			//}
 
     		})
     	});
@@ -110,20 +157,19 @@
 			</select>
 			<br />
 			<label for="contenu">Contenu de l'élément</label><br />
-			<input type="text" placeholder="Contenu" id="contenu" name="contenu" />
+			<input type="text" placeholder="Contenu" id="contenu" name="contenu" /><br />
+			<span class="error" style="color:red;"></span>
 			<br />
 			<label for="ajoutAvant">Ajouter avant</label>
 			<input type="checkbox" name="ajoutAvant" id="ajoutAvant" />
 			<br />
 			<input type="button" id="submit" value="Ajouter" />
-			<input type="button" value="Réinitialiser" />
-			<input type="button" value="Générer" />
+			<input type="button" id="reenit" value="Réinitialiser" />
+			<input type="button" id="generate" value="Générer" />
 		</form>
 	</div>
 
-	<div id="recipient">
-		La page est vide pour l'instant...
-	</div>
+	<div id="recipient"></div>
 
 
 

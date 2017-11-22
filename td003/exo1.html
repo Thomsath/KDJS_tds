@@ -1,0 +1,33 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+
+<p>Position en X : <p><span class="positionX"></span>
+
+<p>Position en Y : <p><span class="positionY"></span>
+
+<div style="border: 1px solid black; height:20px"></div>
+<div id="boxdrag" style="background-color:red; height:20px;"></div>
+</body>
+<script>
+$( function() {
+	var box = $('.boxdrag');
+	var position = box.position();
+	$('#boxdrag').draggable({
+		 drag: function(){
+            var offset = $(this).offset();
+            var X = offset.left;
+            var Y = offset.top;
+            $('.positionX').text(X);
+            $('.positionY').text(Y);
+        }
+	});
+})
+
+</script>
+</html>

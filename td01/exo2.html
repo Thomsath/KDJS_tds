@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>Exercice 01</title>
+    <meta name="description" content="Description de la page">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <style>
+    	body{ font-family: 'Quicksand', sans-serif; }
+	</style>
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+			function Etudiant(prenom,nom,numeroEtudiant,dateNaissance){ 
+				this.prenom=prenom,  
+				this.nom=nom, 
+				this.numeroEtudiant=numeroEtudiant,
+				this.dateNaissance=dateNaissance,
+				this.presenter= function(){ 
+					console.log("Je suis " + this.prenom + " " + this.nom  + " ,je suis née le " + this.dateNaissance + ". Mon numéro étudiant est "+ this.numeroEtudiant+".");
+				}
+				this.age= function(dateNaissance){
+					var dateJ=new Date();
+					var year=parseInt(this.dateNaissance[2]); 
+
+					var age=dateJ.getFullYear()-year;
+					console.log("J'ai "+age+" ans.");
+					
+				}
+			};
+	var etu = new Etudiant("Thomas","Beaupertuis","284848",[29,10,1997]); 
+	var etu1 = new Etudiant("Dorian","Giudice","19e9d5",[15,09,1996]); 
+	etu.presenter();
+	etu.age();
+	etu1.presenter();
+	etu1.age();
+    	});
+   	</script>
+</head>
+<body>
+</body>
