@@ -49,13 +49,7 @@
 
                                     //tabl.push(e.id);
                                     });
-                                   /* $('ul').append('<li><a href="#" data-id="' + e.woeid +'" class="ids"> ' + e.title + '</a></li>');  
-
-                                    $(".ids").click(function() { 
-                                        var index = $(this).parent('li').index() + 1;
-                                        var woeid = $(".ids")[index].getAttribute("data-id");
-                                        console.log(woeid);
-                                    });   */      
+                                    
                         },
                         error : function() {
                             alert('Un problème est survenu');
@@ -63,7 +57,7 @@
 
                         method : "GET"                        
                     });
-console.log(tab);
+
                 $('.search').autocomplete({
                 source : tab,
 
@@ -74,7 +68,6 @@ console.log(tab);
                     //  dataType : "json",
 
                     //})
-                alert("dh");
                 },
 
                 success : function(data) {
